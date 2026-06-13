@@ -29,7 +29,6 @@ pipeline {
             steps {
                 sh '''
                 cp target/*.war /opt/homebrew/opt/tomcat/libexec/webapps/
-                brew services restart tomcat
                 '''
             }
         }
@@ -37,11 +36,11 @@ pipeline {
 
     post {
         success {
-            echo 'Deploy exitoso'
+            echo 'Deploy OK  (WAR copiado a Tomcat)'
         }
 
         failure {
-            echo 'Falló el pipeline'
+            echo 'Pipeline falló'
         }
     }
 }
