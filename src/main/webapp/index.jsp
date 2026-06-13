@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<!DOCTYPE html>
-<html lang="es">
+
+<html>
 <head>
     <title>Proyecto Jenkins</title>
 </head>
