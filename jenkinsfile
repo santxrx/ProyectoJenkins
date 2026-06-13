@@ -5,13 +5,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn clean package'
+                sh 'mvn clean package'
             }
         }
 
         stage('Verificar WAR') {
             steps {
-                bat 'dir target'
+                sh 'ls -la target'
             }
         }
     }
