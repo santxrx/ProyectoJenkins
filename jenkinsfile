@@ -6,16 +6,42 @@ pipeline {
     }
 
     stages {
+
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/santxrx/ProyectoJenkins.git', branch: 'main'
+            }
+        }
+
         stage('Build') {
             steps {
                 sh 'mvn clean package'
             }
         }
 
-        stage('Verificar WAR') {
+        stage('Verify WAR') {
             steps {
                 sh 'ls -la target'
             }
+        }
+
+        stage('Deploy to Tomcat') {
+            steps {
+                sh '''
+                cp target/*.war /opt/homebrew/opt/tomcat/libexec/webapps/
+                brew services restart tomcat
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deploy exitoso'
+        }
+
+        failure {
+            echo 'Falló el pipeline'
         }
     }
 }
